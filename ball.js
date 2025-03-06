@@ -29,6 +29,17 @@ class Ball {
         if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
             this.dy = -this.dy; // Reverse vertical direction
         }
+        console.log(this.x + this.radius)
+    }
+
+    // Check for collisions with other balls
+    isCollide(ball) {
+        return !(
+            (this.x + this.radius < ball.x) ||
+            (this.x > ball.x + ball.radius) ||
+            (this.y + this.height) < ball.y ||
+            (this.y > ball.y + ball.height)
+        )
     }
 }
 

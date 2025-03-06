@@ -6,15 +6,38 @@
     box-sizing: border-box;
 }
 
+:root {
+    --btn-gray: #CCDAD1;
+    --bg-gray: #788585;
+    --canvas-gray: #9CAEA9;
+}
+
 body {
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    background-color: var(--bg-gray);
 }
 
 canvas {
+    background-color: var(--canvas-gray);
+    border-radius: 50%;
+}
+
+#canvas-container {
+    display: flex;
+    gap: 1em;
+}
+
+#controls-container {
     border: 1px solid black;
+    padding: 1em;
+}
+
+.btn {
+    padding: 0.5em;
+    border: none;
+    background-color: var(--btn-gray);
 }
