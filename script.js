@@ -3,34 +3,28 @@ import Ball from './ball.js';
 
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
+const ballSpeed = 4;
 
-// Create a ball instance
-const ball = new Ball(50, 50);
+
+// const ball = new Ball(50, 50, 4, 4);
+const balls = [];
+// balls.push(new Ball(50, 50, 4, 4));
 
 // Animation loop
 const update = () => {
-    // Clear the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw the ball
-    ball.draw(ctx);
-
-    // Move the ball
-    ball.move();
-
-    // Bounce the ball off the walls
-    if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
-        ball.dx = -ball.dx; // Reverse horizontal direction
-    }
-    if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
-        ball.dy = -ball.dy; // Reverse vertical direction
+    if (balls[0]) {
+        for (const ball of balls) {
+            ball.draw(ctx);
+            ball.move();
+            ball.collideWall(canvas);
+        }
     }
 
-    // Call the update function again to create an animation
     requestAnimationFrame(update);
 }
 
-// Start the animation
 update();
 
 // Handle mouse click event to change ball position
@@ -40,6 +34,8 @@ canvas.addEventListener('click', (event) => {
 
     console.log(`x: ${mouseX}, y: ${mouseY}`);
 
-    ball.x = mouseX;  // Update the ball's x position
-    ball.y = mouseY;  // Update the ball's y position
+    balls.push(new Ball(mouseX, mouseY, ballSpeed, ballSpeed));
+
+    // ball.x = mouseX;  // Update the ball's x position
+    // ball.y = mouseY;  // Update the ball's y position
 });
