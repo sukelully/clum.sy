@@ -24,7 +24,7 @@ body {
 
 canvas {
     background-color: var(--canvas-gray);
-    border-radius: 50%;
+    /* border-radius: 100px; */
 }
 
 #canvas-container {
@@ -33,12 +33,22 @@ canvas {
 }
 
 #controls-container {
-    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1em;
     padding: 1em;
+    width: 200px;
 }
 
 .btn {
     padding: 0.5em;
     border: none;
     background-color: var(--btn-gray);
+    width: 100%;
+    border-radius: 10px;
+}
+
+.btn:hover {
+    cursor: pointer;
 }
