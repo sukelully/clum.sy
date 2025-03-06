@@ -6,6 +6,12 @@ const ctx = canvas.getContext('2d');
 const ballSpeed = 4;
 const balls = [];
 
+const clearBtn = document.getElementById('clear-btn');
+
+const clearBalls = () => {
+    balls.splice(0, balls.length);
+}
+
 // Animation loop
 const update = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -33,3 +39,5 @@ canvas.addEventListener('click', (event) => {
 
     balls.push(new Ball(mouseX, mouseY, ballSpeed, ballSpeed));
 });
+
+clearBtn.addEventListener('click', clearBalls);

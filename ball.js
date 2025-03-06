@@ -5,7 +5,7 @@ class Ball {
         this.radius = 20;
         this.dx = dx;
         this.dy = dy;
-        this.color = 'red';
+        this.color = 'black';
     }
 
     move() {
@@ -29,7 +29,6 @@ class Ball {
         if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
             this.dy = -this.dy; // Reverse vertical direction
         }
-        console.log(this.x + this.radius)
     }
 
     // Check for collisions with other balls
