@@ -33,12 +33,21 @@ class Ball {
 
     // Check for collisions with other balls
     isCollide(ball) {
-        return !(
-            (this.x + this.radius < ball.x) ||
-            (this.x > ball.x + ball.radius) ||
-            (this.y + this.height) < ball.y ||
-            (this.y > ball.y + ball.height)
-        )
+        const distX = this.x - ball.x;
+        const distY = this.y - ball.y;
+        const distance = Math.sqrt(distX * distX + distY * distY);
+
+        if (distance < this.radius + ball.radius) {
+            this.color = 'red';
+            ball.color = 'red';
+
+            this.dx = -this.dx;
+            ball.dx = -ball.dx;
+            this.dy = -this.dy;
+            ball.dy = -ball.dy;
+        }
+
+        return distance < this.radius + ball.radius;
     }
 }
 

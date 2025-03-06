@@ -3,7 +3,7 @@ import Ball from './ball.js';
 
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
-const ballSpeed = 4;
+const ballSpeed = 1;
 const balls = [];
 
 const clearBtn = document.getElementById('clear-btn');
@@ -11,20 +11,28 @@ const clearBtn = document.getElementById('clear-btn');
 const clearBalls = () => {
     balls.splice(0, balls.length);
 }
+
 const update = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     for (let i = 0; i < balls.length; i++) {
-        const ball = balls[i];
-        ball.move();
-        ball.collideWall(canvas);
+        balls[i].move();
+        balls[i].collideWall(canvas);
+
+        // Reset ball color
+        // balls[i].color = 'black';
 
         // Check for collisions with other balls
         for (let j = i + 1; j < balls.length; j++) {
-            if (ball.isCollide(balls[j])) console.log('collide');
+            if (balls[i].isCollide(balls[j])) {
+                console.log('collision!');
+            } else {
+                balls[i].color = 'black';
+                balls[j].color = 'black';
+            }
         }
 
-        ball.draw(ctx);
+        balls[i].draw(ctx);
     }
 
     requestAnimationFrame(update);
@@ -40,7 +48,7 @@ canvas.addEventListener('click', (event) => {
 
     console.log(`x: ${mouseX}, y: ${mouseY}`);
 
-    balls.push(new Ball(mouseX, mouseY, randomSpeed, ballSpeed));
+    balls.push(new Ball(mouseX, mouseY, ballSpeed, ballSpeed));
 });
 
 clearBtn.addEventListener('click', clearBalls);
